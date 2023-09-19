@@ -6,11 +6,13 @@ import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CycleShopComponent } from './cycle-shop/cycle-shop.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CycleShopComponent
+    CycleShopComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
