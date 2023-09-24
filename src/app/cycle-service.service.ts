@@ -28,7 +28,8 @@ export class CycleServiceService {
     });
   }
 
-  addCycle(name: string, stock: number): Observable<Cycle[]>{
-    return this._http.post<Cycle[]>(`http://localhost:8080/cycle/add`,{name: name, stock: stock},{responseType:'json'});
+  addCycle(name: string, stock: number,price: number): Observable<Cycle[]>{
+    return this._http.post<Cycle[]>(`http://localhost:8080/cycle/add`,{name: name, stock: stock, price:price},{responseType:'json'});
   }
+
 }

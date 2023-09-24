@@ -3,10 +3,12 @@
   <span class="badge">{{ cycle.id }}</span>
   <span class="name">{{ cycle.name }}</span>
   <span class="stock">{{ cycle.stock }}</span>
+  <span class="stock">${{ cycle.price }}</span>
   <br>
-  <button type="button" (click)="onSelect(cycle)" class="cycle-button">Borrow</button>
-  <button type="button" (click)="onChoose(cycle)" class="cycle-button">Return</button>
-  <button type="button" (click)="onClick(cycle)" class="cycle-button">Restock</button>
+  <button type="button" (click)="borrow(cycle)" class="cycle-button">Borrow</button>
+  <button type="button" (click)="returning(cycle)" class="cycle-button">Return</button>
+  <button type="button" (click)="addtoCart(cycle)" class="cycle-button">Add To Cart</button>
+  <button type="button" (click)="restock(cycle)" class="cycle-button">Restock</button>
   <input [(ngModel)]="count" type="number" class="cycle-input">
 </li>
 <div>
@@ -14,5 +16,9 @@
   <input [(ngModel)]="name" type="text" class="cycle-input">
   <label for="stock">Stock</label>
   <input [(ngModel)]="stock" type="number" class="cycle-input">
-  <button type="button" (click)="add(name, stock)" class="add-button">Add</button>
+  <label for="price">Price</label>
+  <input [(ngModel)]="price" type="number" class="cycle-input">
+  <button type="button" (click)="add(name, stock, price)" class="add-button">Add</button>
+  
 </div>
+

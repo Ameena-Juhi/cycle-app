@@ -7,12 +7,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CycleShopComponent } from './cycle-shop/cycle-shop.component';
 import { CartComponent } from './cart/cart.component';
+import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CycleShopComponent,
-    CartComponent
+    CartComponent,
+    LoginComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,20 @@
-<h1>{{title}}</h1>
-<app-cycle-shop></app-cycle-shop>
-<app-cart></app-cart>
+
+<head>
+    <title>Cycle Store</title>
+</head>
+<body>
+    <header>
+        <h2>Cycle Store</h2>
+    </header>
+
+    <div class="navbar">
+        <a routerLink="/restock">Restock</a>
+        <a routerLink="/cycleStore">Cycle Store</a>
+        <a routerLink="/cart">Cart</a>
+    </div>
+
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
+</body>
+

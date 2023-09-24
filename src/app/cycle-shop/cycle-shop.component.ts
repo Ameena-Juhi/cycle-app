@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Cycle } from '../Cycle';
 import { CycleServiceService } from '../cycle-service.service';
+import { CartItem } from '../CartItem';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-cycle-shop',
@@ -9,31 +11,44 @@ import { CycleServiceService } from '../cycle-service.service';
 })
 export class CycleShopComponent {
   cycles: Cycle[] = [];
-  count:number = 1;
-  name:string = "";
-  stock:number = 1;
-  constructor(private cycleService: CycleServiceService){}
+  cartItems: CartItem[]=[];
+  count:number=1;
+  name: string = "";
+  stock: number = 1;
+  price: number = 100;
+
+  constructor(
+    private cycleService: CycleServiceService,
+    private cartService: CartService
+  ) {}
 
   ngOnInit(): void {
     this.cycleService.getAllCycles().subscribe(res => this.cycles = res);
   }
 
-  onSelect(cycle:Cycle):void{
+  borrow(cycle: Cycle): void {
     this.cycleService.borrowCycle(cycle.id).subscribe(res => {
       this.cycles = res;
     });
   }
 
-  onChoose(cycle:Cycle):void{
+  returning(cycle: Cycle): void {
     this.cycleService.returnCycle(cycle.id).subscribe(res => this.cycles = res);
   }
 
-  onClick(cycle:Cycle):void{
-    this.cycleService.restockCycle(cycle.id,this.count).subscribe(res => this.cycles = res);
+  restock(cycle: Cycle): void {
+    this.cycleService.restockCycle(cycle.id, this.count).subscribe(res => this.cycles = res);
   }
 
-  add(name:string,stock:number):void{
-    this.cycleService.addCycle(name, stock).subscribe(res => {this.cycles = res});
+  add(name: string, stock: number, price: number): void {
+    this.cycleService.addCycle(name, stock, price).subscribe(res => {
+      this.cycles = res;
+    });
   }
 
+  addtoCart(cycle: Cycle): void {
+   this.cartService.addToCart(cycle.id).subscribe();
+  }
+
+  
 }

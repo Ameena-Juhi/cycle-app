@@ -1,20 +1,28 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Cycle } from './Cycle';
+import { CartItem } from './CartItem';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
 
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient) {}
 
-  addToCartCycle(id : number): Observable<void>{
-    return this._http.get<void>(`http://localhost:8080/cycle/addToCart/${id}`);
+  addToCart(id: number): Observable<any> {
+  return this._http.post(`http://localhost:8080/cycle/addToCart/${id}`,{});
+    
   }
 
-  showCart() :Observable<Cycle[]>{
-    return this._http.get<Cycle[]>("http://localhost:8080/cycle/showCart");
+  getCart(): Observable<CartItem[]> { 
+    return this._http.get<CartItem[]>("http://localhost:8080/cycle/showCart");
   }
+
+
+  checkout(): Observable<CartItem[]> {
+    console.log("service");
+    return this._http.post<CartItem[]>('http://localhost:8080/cycle/checkout',{});
+  }
+
 }

@@ -1,1 +1,22 @@
-<p>cart works!</p>
+<h1>Cart</h1>
+<table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cartItem of cartItems">
+        <td>{{cartItem.name}}</td>
+        <td>{{ cartItem.quantity }}</td>
+        <td>{{ cartItem.total }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div>
+    <button (click)="checkOut()">Check out</button>
+  </div>
+
+
