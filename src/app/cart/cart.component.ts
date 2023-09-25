@@ -10,6 +10,7 @@ import { CartItem } from '../CartItem';
 export class CartComponent {
 
   cartItems: any;
+  Id: number=1;
 
   constructor(private cartService: CartService){}
 
@@ -24,5 +25,12 @@ export class CartComponent {
     this.cartService.checkout().subscribe(res => this.cartItems=res);
   }
 
+  generateBill(): number {
+    if (!this.cartItems) {
+      return 0; // Handle the case when cartItems is null or undefined
+    }
+  
+    return this.cartItems.reduce((total: any, item: { total: any; }) => total + (item.total || 0), 0);
+  }
   
 }

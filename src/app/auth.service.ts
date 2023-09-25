@@ -1,65 +1,37 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable, tap } from 'rxjs';
 
-import { AuthService } from './auth.service.spec';
-
- 
-
-// Define the Credentials interface
-
-interface Credentials {
-
-  username: string;
-
-  password: string;
-
-}
-
- 
-
-@Component({
-
-  selector: 'app-login',
-
-  templateUrl: './login.component.html',
-
-  styleUrls: ['./login.component.css']
-
+@Injectable({
+  providedIn: 'root'
 })
+export class AuthService {
 
-export class LoginComponent {
+  constructor(private http: HttpClient) { }
 
-  credentials: Credentials = { username: '', password: '' }; // Initialize with empty values
-
- 
-
-  constructor(private authService: AuthService) {}
+  authUrl = 'http://localhost:8080/api/auth';
 
  
 
-  login(): void {
+  login(username: string, password: string): Observable<any> {
 
-    this.authService.login(this.credentials).subscribe(
+    return this.http.post<any>(`${this.authUrl}/token`,{username:username, password:password}).pipe(
 
-      (response) => {
+      tap(res => {
 
-        localStorage.setItem('token', response.token);
-
-        console.log('Login successful');
-
-        // Handle successful login, e.g., redirect to user dashboard
-
-      },
-
-      (error) => {
-
-        console.error('Login failed', error);
-
-        // Handle login error
-
-      }
+        localStorage.setItem('token', res['token']);
+        console.log(localStorage.getItem('token'));
+        console.log(res['token']);
+        localStorage.setItem('username', res['username']);
+      })
 
     );
 
   }
-
+  
+  logout() : void{
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+  }
+  
 }

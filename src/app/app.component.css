@@ -1,3 +1,5 @@
+/* styles.css */
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f3f3f3;
@@ -5,16 +7,8 @@ body {
     padding: 0;
 }
 
-header {
-    background-color: #131921; /* Amazon's header background color */
-    color: #fff;
-    text-align: center;
-    padding: 15px 0;
-    font-size: 24px;
-}
-
-.navbar {
-    background-color: #232f3e; /* Amazon's navigation bar background color */
+.header {
+    background-color: #8500a7; /* Custom header background color */
     color: #fff;
     display: flex;
     justify-content: space-between;
@@ -22,50 +16,34 @@ header {
     padding: 10px 20px;
 }
 
+.logo h2 {
+    font-size: 28px;
+    margin: 0;
+}
+
+.navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.navbar li {
+    margin-right: 20px;
+}
+
 .navbar a {
-    color: #fff;
     text-decoration: none;
     font-size: 16px;
-    margin-right: 20px;
+    color: #fff;
     transition: color 0.3s ease;
 }
 
-.navbar a:last-child {
-    margin-right: 0;
-}
-
 .navbar a:hover {
-    color: #f0c14b; /* Amazon's link hover color */
+    color: #3cf9ff; /* Hover color */
 }
 
-.sidebar {
-    background-color: #131921; /* Amazon's sidebar background color */
-    color: #fff;
-    width: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-}
-
-.sidebar a {
-    padding: 16px 32px;
-    text-decoration: none;
-    font-size: 20px;
-    color: #fff;
-    display: block;
-    transition: 0.3s;
-}
-
-.sidebar a:hover {
-    background-color: #f0c14b; /* Amazon's sidebar link hover color */
-    color: #131921; /* Change text color on hover */
-}
-
-.container {
+.content {
     padding: 20px;
     background-color: #fff;
     border-radius: 5px;

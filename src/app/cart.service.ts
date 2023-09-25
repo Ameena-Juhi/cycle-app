@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CartItem } from './CartItem';
 
@@ -11,18 +11,26 @@ export class CartService {
   constructor(private _http: HttpClient) {}
 
   addToCart(id: number): Observable<any> {
-  return this._http.post(`http://localhost:8080/cycle/addToCart/${id}`,{});
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + localStorage.getItem('token') 
+    });
+  return this._http.post(`http://localhost:8080/cycle/addToCart/${id}`,{},{headers: headers});
     
   }
 
   getCart(): Observable<CartItem[]> { 
-    return this._http.get<CartItem[]>("http://localhost:8080/cycle/showCart");
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + localStorage.getItem('token') 
+    });
+    return this._http.get<CartItem[]>("http://localhost:8080/cycle/showCart",{headers:headers});
   }
 
 
   checkout(): Observable<CartItem[]> {
-    console.log("service");
-    return this._http.post<CartItem[]>('http://localhost:8080/cycle/checkout',{});
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + localStorage.getItem('token') 
+    });
+    return this._http.post<CartItem[]>('http://localhost:8080/cycle/checkout',{},{headers:headers});
   }
 
 }
