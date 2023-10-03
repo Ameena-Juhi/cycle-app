@@ -23,6 +23,7 @@ export class AuthService {
         console.log(localStorage.getItem('token'));
         console.log(res['token']);
         localStorage.setItem('username', res['username']);
+        
       })
 
     );

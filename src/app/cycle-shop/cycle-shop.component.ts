@@ -3,6 +3,7 @@ import { Cycle } from '../Cycle';
 import { CycleServiceService } from '../cycle-service.service';
 import { CartItem } from '../CartItem';
 import { CartService } from '../cart.service';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-cycle-shop',
